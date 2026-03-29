@@ -59,6 +59,21 @@
 
     <button class="btn btn-green" onclick="startQuiz(false)">🚀 Start Quiz</button>
     <button class="btn btn-outline" onclick="startQuiz(true)">⚡ Quick Practice (10 Qs)</button>
+    <button class="btn btn-yellow" onclick="showNotes()">📚 Study Notes</button>
+  </div>
+
+  <!-- NOTES SCREEN -->
+  <div id="notes" class="screen">
+    <div class="quiz-header">
+      <button class="q-back" onclick="showHome()">✕</button>
+      <div style="flex:1; font-family:'Fredoka One',cursive; font-size:22px; color:#111;">Study Notes</div>
+    </div>
+
+    <div class="notes-search-wrap">
+      <input type="text" id="notes-search" class="notes-search" placeholder="🔍 Search notes..." oninput="filterNotes(this.value)">
+    </div>
+
+    <div id="notes-container"></div>
   </div>
 
   <!-- QUIZ SCREEN -->

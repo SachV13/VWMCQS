@@ -374,6 +374,215 @@ function showScreen(id) {
   window.scrollTo(0, 0);
 }
 
+// ===== STUDY NOTES =====
+const NOTES_DATA = [
+  {
+    title: "🌐 Virtual Worlds Definition",
+    icon: "🌐",
+    color: "badge-blue",
+    notes: [
+      "Bartle defines virtual world as persistent, shared, real-time, rule-based environment.",
+      "Users act through avatars inside a system governed by automated rules.",
+      "Persistence means the world continues even when players leave — if it resets, it's not a virtual world.",
+      "Real-time means interaction within ~4 seconds; turn-based systems do not qualify.",
+      "Shared means multiple users exist together — single-player systems fail this.",
+      "Avatar is the user's representation in the world; without one, no virtual world exists.",
+      "Physics means an automated rule system (not real-world physics, but system-enforced logic).",
+      "'Not Reality' criterion exists because the real world satisfies all other criteria — so separation is needed.",
+      "Chatrooms fail: no automated physics; humans enforce rules, not the system.",
+      "D&D fails: the dungeon master controls rules — no automation.",
+      "Fortnite fails: each match resets the world — no persistence.",
+      "RTS games fail: player controls multiple units, violating one-character-per-player.",
+    ]
+  },
+  {
+    title: "👤 Characters, Avatars & Agents",
+    icon: "👤",
+    color: "badge-green",
+    notes: [
+      "World is a self-contained interaction space perceived as a separate environment.",
+      "Place is a space with meaning — meaning comes from interaction and context.",
+      "Virtual means not real but has real effects; functional realism matters more than physical.",
+      "Agent is any entity that can act — includes both human and non-human actors.",
+      "Character is an agent with human-like cognition; not all agents are characters.",
+      "Player Character (PC) is controlled by a human; NPC is controlled by the system.",
+      "Avatar is the visual representation of a character — not the same as the player itself.",
+      "Companion is an NPC assisting the player, showing semi-autonomous support.",
+      "Drone has limited autonomy — not fully independent like an NPC.",
+      "Mob refers to a non-character agent, often used for enemies.",
+      "Boss is a strong scripted enemy with higher difficulty and importance.",
+      "Critter is a decorative entity with no meaningful interaction.",
+    ]
+  },
+  {
+    title: "🌿 Gibson's Affordance Theory",
+    icon: "🌿",
+    color: "badge-yellow",
+    notes: [
+      "Gibson defines affordance as what the environment offers an organism — focus is on action possibilities.",
+      "Affordances exist between object and organism — neither purely subjective nor objective.",
+      "Chair affords sitting due to body compatibility; shape alone is not enough.",
+      "Ground affords walking if flat and rigid, relative to the human body.",
+      "Affordances exist even if not perceived — perception is not required.",
+      "Misperception occurs when the wrong affordance is assumed (e.g. glass mistaken for open space).",
+      "Niche is the set of affordances available to an organism — defines its ecological role.",
+      "Perception is direct detection of affordances; no heavy cognitive processing required.",
+      "Affordances depend on scale of organism — the same object differs for a human vs an insect.",
+    ]
+  },
+  {
+    title: "🪞 Proteus Effect (Yee & Bailenson)",
+    icon: "🪞",
+    color: "badge-blue",
+    notes: [
+      "Proteus Effect: avatar characteristics change user behavior.",
+      "Attractive avatars increase confidence and self-disclosure.",
+      "Attractive avatars reduce interpersonal distance — people stand closer.",
+      "Taller avatars increase dominance — users negotiate more aggressively.",
+      "Shorter avatars lead to submissive behavior — users accept unfair deals.",
+      "Based on self-perception theory: 'I look like this → I behave like this.'",
+      "Deindividuation supports Proteus Effect — reduced self-awareness increases role adoption.",
+      "Proteus Effect works even when alone — no need for other people.",
+      "Behavioral confirmation depends on others; Proteus depends on self.",
+      "Confederates were blind in experiments to remove external influence.",
+      "Effect occurs quickly, within minutes — no long-term exposure required.",
+      "Behavior can transfer to the real world — not limited to virtual context.",
+    ]
+  },
+  {
+    title: "🆔 Metaverse Identity",
+    icon: "🆔",
+    color: "badge-green",
+    notes: [
+      "Metaverse identity = combination of personal identity + data identity (two-layer structure).",
+      "Personal identity includes avatar, communication, and expression — how the user presents themselves.",
+      "Data identity includes biometrics, behavior, and demographics — what the system collects.",
+      "Metaverse is persistent and interoperable — identity continues across platforms.",
+      "XR includes VR, AR, MR — blends physical and digital.",
+      "Users create ideal or experimental identities — identity becomes flexible.",
+      "Digital identity affects real behavior — not just a virtual consequence.",
+      "Psychological risks: dissociation (disconnect from real self), body dysmorphia from ideal avatars, addiction.",
+      "Social risks: harassment (often based on avatar traits), bias and discrimination transfer into virtual spaces.",
+      "Data risks: surveillance, biometric tracking (voice, movement, gaze), predictive profiling.",
+      "Platforms are not neutral — design influences identity and behavior.",
+      "Algorithms shape actions through rewards and visibility; filter bubbles and echo chambers reinforce beliefs.",
+      "AI creates fake avatars and deepfakes — identity authenticity becomes a challenge.",
+      "Federated learning keeps data on device, reducing privacy risks.",
+    ]
+  },
+  {
+    title: "🏙️ Digital Twins",
+    icon: "🏙️",
+    color: "badge-yellow",
+    notes: [
+      "Digital twin = real system + virtual model + real-time data; enables monitoring and simulation.",
+      "Digital model has no live data — it is a static representation.",
+      "Digital shadow has one-way data flow: real to virtual only.",
+      "Digital twin has two-way data flow — real and virtual interact.",
+      "Smart DCU uses IoT, AI, and 3D visualization in an integrated system approach.",
+      "Sensors collect occupancy, noise, and movement data for real-time environmental awareness.",
+      "Unreal Engine is used for visualization, creating immersive models.",
+      "Digital twin supports decision-making and improves efficiency.",
+      "Without real-time data, the system is not a twin — just a model or simulation.",
+    ]
+  },
+  {
+    title: "🥽 Social VR & Presence",
+    icon: "🥽",
+    color: "badge-blue",
+    notes: [
+      "Social VR enhances interaction — more immersive than traditional media.",
+      "Presence: the feeling of 'being there' — a core VR concept.",
+      "Embodiment: the feeling that the avatar is your body — a strong psychological effect.",
+      "Social presence: the feeling that others exist — enhances communication.",
+      "VR increases emotional intensity and makes experiences more realistic.",
+      "Interaction becomes more natural in VR, closer to real-world behavior.",
+    ]
+  },
+  {
+    title: "🤖 Uncanny Valley (Mori)",
+    icon: "🤖",
+    color: "badge-green",
+    notes: [
+      "Mori defines the uncanny valley: near-human realism causes discomfort.",
+      "Low realism → acceptable. High realism → acceptable. Middle zone → eerie feeling.",
+      "Slight imperfections in near-human robots trigger rejection responses.",
+      "Stylized avatars avoid the uncanny valley — they carry less expectation of realism.",
+      "Emotional response is the key factor, not just visual accuracy.",
+      "Movement amplifies both peaks and valleys — a slightly off movement makes things creepier.",
+    ]
+  },
+  {
+    title: "⚡ Key Summary",
+    icon: "⚡",
+    color: "badge-yellow",
+    notes: [
+      "Virtual world = system rules + persistence + avatars + interaction.",
+      "Identity = what you show (personal) + what the system knows (data).",
+      "Behavior = shaped by avatar + environment + platform.",
+      "Risk = psychological + social + data + AI manipulation.",
+      "Virtual worlds are sub-realities — not fake, but alternate systems.",
+      "Identity is co-shaped by user and platform — not fully controlled by either.",
+      "Affordances guide user actions — environment shapes behavior.",
+      "Avatars act as behavioral triggers — identity influences decisions.",
+      "Data collection enables prediction — behavior becomes measurable.",
+      "Virtual and real boundaries blur — effects cross both worlds.",
+    ]
+  }
+];
+
+function showNotes() {
+  showScreen('notes');
+  renderNotes(NOTES_DATA, '');
+}
+
+function renderNotes(data, query) {
+  const container = document.getElementById('notes-container');
+  const q = query.trim().toLowerCase();
+  let html = '';
+  let totalVisible = 0;
+
+  data.forEach(function(section, si) {
+    const visibleNotes = section.notes.filter(function(n) {
+      return !q || n.toLowerCase().includes(q);
+    });
+    if (visibleNotes.length === 0) return;
+    totalVisible += visibleNotes.length;
+
+    const isOpen = q || si === 0;
+    html += '<div class="notes-section">';
+    html += '<div class="notes-section-header ' + (isOpen ? 'open' : '') + '" onclick="toggleSection(this)">';
+    html += '<span>' + section.title + '</span>';
+    html += '<span class="n-badge">' + visibleNotes.length + '</span>';
+    html += '<span class="chevron">▼</span>';
+    html += '</div>';
+    html += '<div class="notes-body ' + (isOpen ? 'open' : '') + '">';
+    visibleNotes.forEach(function(note) {
+      const highlighted = q
+        ? note.replace(new RegExp('(' + q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi'), '<mark>$1</mark>')
+        : note;
+      html += '<div class="note-item"><span class="dot">•</span><span>' + highlighted + '</span></div>';
+    });
+    html += '</div></div>';
+  });
+
+  if (totalVisible === 0) {
+    html = '<div class="notes-empty">🔍 No notes match "' + query + '"</div>';
+  }
+
+  container.innerHTML = html;
+}
+
+function filterNotes(value) {
+  renderNotes(NOTES_DATA, value);
+}
+
+function toggleSection(header) {
+  header.classList.toggle('open');
+  var body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
 // ===== SPLASH =====
 function hideSplash() {
   var splash = document.getElementById('splash');
