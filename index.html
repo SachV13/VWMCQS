@@ -3,16 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virtual Worlds MCQs</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>VW MCQs — Virtual Worlds Quiz</title>
+  <meta name="description" content="Virtual Worlds MCQ Challenge — 50 timed questions on Virtual Worlds Design, Social VR, Affordances, Uncanny Valley, and Digital Twins.">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Virtual Worlds MCQs</h1>
-    <button onclick="startTest()">Start Test</button>
-    <button onclick="openGlossary()">Glossary & Key Points</button>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-logo">VW<span> MCQs</span></div>
+  <div class="splash-sub">Virtual Worlds Quiz</div>
+  <div class="splash-dots">
+    <div class="splash-dot"></div>
+    <div class="splash-dot"></div>
+    <div class="splash-dot"></div>
+  </div>
+</div>
+
+<!-- CONFETTI -->
+<div class="confetti-wrap" id="confetti"></div>
+
+<!-- APP -->
+<div id="app">
+
+  <!-- HOME SCREEN -->
+  <div id="home" class="screen active">
+    <div class="home-hero">
+      <span class="home-icon">🌐</span>
+      <div class="home-title">Virtual Worlds<br><span class="accent">MCQ Challenge</span></div>
+      <div class="home-sub">50 Questions · 40 Minutes</div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-num" id="home-total-q">50</div>
+        <div class="stat-label">Questions</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">40</div>
+        <div class="stat-label">Minutes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num" id="home-db-count">—</div>
+        <div class="stat-label">Q in Bank</div>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <span class="badge badge-blue">📖 Bartle's VW Design</span>
+      <span class="badge badge-green">🥽 Social VR</span>
+      <span class="badge badge-yellow">🌀 Affordances</span>
+      <span class="badge badge-blue">🤖 Uncanny Valley</span>
+      <span class="badge badge-green">🏙️ Digital Twins</span>
+    </div>
+
+    <button class="btn btn-green" onclick="startQuiz(false)">🚀 Start Quiz</button>
+    <button class="btn btn-outline" onclick="startQuiz(true)">⚡ Quick Practice (10 Qs)</button>
   </div>
 
-  <script src="script.js"></script>
+  <!-- QUIZ SCREEN -->
+  <div id="quiz" class="screen">
+    <div class="quiz-header">
+      <button class="q-back" onclick="quitQuiz()">✕</button>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+      <div class="timer-badge" id="timer-badge">40:00</div>
+    </div>
+
+    <div class="q-counter" id="q-counter">Question 1 of 50</div>
+    <div class="q-text" id="q-text"></div>
+    <div class="options-grid" id="options-grid"></div>
+
+    <div class="feedback-bar" id="feedback-bar">
+      <div class="fb-title" id="fb-title"></div>
+      <div id="fb-explanation"></div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="results" class="screen">
+    <div class="results-score" id="results-score">0/50</div>
+    <div class="results-label" id="results-label">Great job!</div>
+    <div class="results-motivation" id="results-motivation"></div>
+
+    <div class="results-summary">
+      <div class="summary-card green">
+        <div class="sum-num" id="sum-correct">0</div>
+        <div class="sum-label">✅ Correct</div>
+      </div>
+      <div class="summary-card red">
+        <div class="sum-num" id="sum-wrong">0</div>
+        <div class="sum-label">❌ Wrong</div>
+      </div>
+      <div class="summary-card blue">
+        <div class="sum-num" id="sum-pct">0%</div>
+        <div class="sum-label">🎯 Score</div>
+      </div>
+    </div>
+
+    <button class="btn btn-green" onclick="startQuiz(false)">🔄 Retake Test</button>
+    <button class="btn btn-blue" onclick="showHome()">🏠 Home</button>
+
+    <div class="incorrect-section" id="incorrect-section"></div>
+  </div>
+
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
