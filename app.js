@@ -596,3 +596,12 @@ document.addEventListener('DOMContentLoaded', function() {
   setTimeout(hideSplash, 2000);
 });
 setTimeout(hideSplash, 4000);
+
+// ===== EXPOSE GLOBALS (fixes onclick in HTML) =====
+window.startQuiz     = startQuiz;
+window.quitQuiz      = quitQuiz;
+window.showHome      = showHome;
+window.showNotes     = showNotes;
+window.filterNotes   = filterNotes;
+window.toggleSection = toggleSection;
+window.selectAnswer  = selectAnswer;
